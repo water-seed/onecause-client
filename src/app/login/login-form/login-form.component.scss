@@ -1,0 +1,14 @@
+.login-form {
+  height: 400px;
+  width: 400px;
+  background-color: white;
+
+  .mat-form-field {
+    padding: 8px;
+  }
+}
+
+.username,
+.password {
+  width: 375px;
+}
