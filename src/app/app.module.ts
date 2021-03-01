@@ -5,11 +5,12 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ToastComponent } from './toast/toast.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
+    ToastComponent,
   ],
   imports: [
     BrowserModule,

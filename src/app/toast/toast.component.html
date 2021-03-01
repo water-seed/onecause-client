@@ -1,0 +1,5 @@
+<div *ngIf="toast$ | async; let toast"  >
+    <div fxLayout="row" fxLayoutAlign="center center" [ngClass]="{ 'info': toast.type === 'info', 'error': toast.type === 'error'}"  class="toast">
+        <span>{{ toast.message }}</span>
+    </div>
+</div>

@@ -12,3 +12,11 @@
 .password {
   width: 375px;
 }
+
+.error-message {
+  height: 60px;
+  width: 100%;
+  z-index: 1000;
+  background-color: red;
+  color: white;
+}

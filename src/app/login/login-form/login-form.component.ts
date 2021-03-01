@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-login-form',
@@ -9,7 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginFormComponent implements OnInit {
 
   constructor(
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
+    private readonly loginService: LoginService
   ) { }
 
   form: FormGroup = this.formBuilder.group({
@@ -20,4 +22,13 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  login() {
+    // take one operator will close this subject for me.
+      this.loginService.login(
+        this.form.get("username")?.value,
+        this.form.get("password")?.value)
+      .subscribe({
+        next: () => {},
+      });
+  }
 }

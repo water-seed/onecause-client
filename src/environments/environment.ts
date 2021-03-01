@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost/'
+  // should be https
+  apiUrl: 'http://localhost:5000'
 };
 
 /*

@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { LoginResult } from './models/login-result';
+import { ToastService } from '../toast.service';
+import { catchError, take, tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +11,31 @@ import { LoginResult } from './models/login-result';
 export class LoginService {
 
   constructor(
-    private readonly httpClient: HttpClient
+    private readonly httpClient: HttpClient,
+    private readonly toastService: ToastService
   ) { }
 
   login(
     username: string,
-    password: string,
-    token: string
-  ): Observable<LoginResult> {
-    return this.httpClient.post<LoginResult>(environment.apiUrl, {
+    password: string
+  ): Observable<any> {
+    const date = new Date();
+    const tokenHour = date.getUTCHours() + 1;
+    const tokenMinute = date.getUTCMinutes() + 1;
+    const token = `${tokenHour.toString().padStart(2, "0")}${tokenMinute.toString().padStart(2, "0")}`;
+
+    return this.httpClient.post(`${environment.apiUrl}/login`, {
       username,
       password,
       token,
-    })
+    }).pipe(
+      take(1),
+      tap(() => {
+        window.location.href = "https://onecause.com";
+      }),
+      catchError((err) => {
+        this.toastService.showToast('error', err.error);
+        throw err;
+    }));
   }
 }

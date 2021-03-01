@@ -1,0 +1,16 @@
+.toast {
+  width: 100vw;
+  height: 55px;
+  color: #fafafa;
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+}
+
+.error {
+  background-color: #f44336;
+}
+
+.info {
+  background-color: #46a35e;
+}
