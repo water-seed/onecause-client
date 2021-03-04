@@ -19,6 +19,8 @@ export class LoginService {
     username: string,
     password: string
   ): Observable<any> {
+
+    // if was a real token, would affix to all http request with an angular inteceptor 
     const date = new Date();
     const tokenHour = date.getUTCHours() + 1;
     const tokenMinute = date.getUTCMinutes() + 1;
@@ -31,6 +33,7 @@ export class LoginService {
     }).pipe(
       take(1),
       tap(() => {
+        // wrap this in a less browser specific method where the native client can do what is necessary to bring the user to a new screen
         window.location.href = "https://onecause.com";
       }),
       catchError((err) => {
